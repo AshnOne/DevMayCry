@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "DevMayCry.tab.h"
 #include "banco.h"
 #include "interface.h"
 #include "read_file.h"
@@ -53,12 +53,12 @@ CHAR (char)
 VOID (void)
 LONG (long)
 
-ADD ("+")
-SUB ("-")
-ATRIB ("=")
-DIV ("/")
-MULT ("*")
-RESTO ("%")
+ADD "+"
+SUB "-"
+ATRIB "="
+DIV "/"
+MULT "*"
+RESTO "%"
 
 AND (&&)
 OR ("||")
@@ -76,28 +76,31 @@ MENOR_EQUAL ("<=")
 DIFERENTE ("!=")
 MAIOR (">")
 MENOR ("<")
+ESPACO [ \t]
 
 LETRA [a-zA-Z_]
 
 DIGITO [0-9]
-NUMERO {DIGITO}+|{DIGITO}+.{DIGITO}+
+NUMERO {DIGITO}+|{DIGITO}+"."{DIGITO}+
 
 IDENTIFICADOR {LETRA}({LETRA}|{DIGITO})*
 
 
 ERROVAR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*
 ERROARROBA ({LETRA}|{DIGITO})*("@")({LETRA}|{DIGITO})*
-ERRONUM {DIGITO}+.
+ERRONUM {DIGITO}+"."
 
 %%
 	//2ª)Regras
 
 
-" "                 {                           }
+{ESPACO}+               { 
+                        ;
+                        }
 
 {MAIN}              {
                         tab = insert_banco(tab, yytext, "function_ThisPartysGettingCrazy", "\0", count);
-                        //return MAIN;
+                        return MAIN;
                     }
 
 "BEGONE"            {
@@ -106,264 +109,264 @@ ERRONUM {DIGITO}+.
 
 {NUMERO}            {
                         tab = insert_banco(tab, yytext, "enum", "\0", count);
-                        //return NUMERO;
+                        return NUMERO;
                         
                     }
                     
 {RETURN}		    { 
                         tab = insert_banco(tab, yytext, "keyword_jackpot", "\0", count);
-                        //return RETURN;
+                        return RETURN;
                     }
 
 {REMOVE}            {
                         tab = insert_banco(tab, yytext, "keyword_flockOff", "\0", count); 
-                        //return REMOVE;
+                        return REMOVE;
                     }
 
 {TYPEDEF}           {
                         tab = insert_banco(tab, yytext, "keyword_CatchThis", "\0", count);
-                        //return TYPEDEF;
+                        return TYPEDEF;
                     }
 
 {INCLUDE}           {
                         tab = insert_banco(tab, yytext, "keyword_TakeThis", "\0", count);
-                        //return INCLUDE;
+                        return INCLUDE;
                     }
 
 {DEFINE}            {
                         tab = insert_banco(tab, yytext, "keyword_GetSet", "\0",count);
-                        //return DEFINE;
+                        return DEFINE;
                     }
 
 {IF}                {
                         tab = insert_banco(tab, yytext, "conditional_whatif", "\0", count);
-                        //return IF;
+                        return IF;
                     }
 
 {ELSE}              {
                         tab = insert_banco(tab, yytext, "conditional_NuUh", "\0", count);
-                        //return ELSE;
+                        return ELSE;
                     }
 
 {SWITCH}            {
                         tab = insert_banco(tab, yytext, "conditional_change", "\0", count);
-                        //return SWITCH;
+                        return SWITCH;
                     }
 
 {CASE}              {
                         tab = insert_banco(tab, yytext, "conditional_case", "\0", count);
-                        //return CASE;
+                        return CASE;
                     }
 
 {FOR}               {
                         tab = insert_banco(tab, yytext, "repetition_ShallWeDance", "\0", count);
-                        //return FOR;
+                        return FOR;
                     }
 
 {WHILE}             {
                        tab = insert_banco(tab, yytext, "repetition_Fire", "\0", count);
-                       //return WHILE;
+                       return WHILE;
                     }
 
 {DO}                {
                         tab = insert_banco(tab, yytext, "repetition_ComeOn", "\0", count);
-                        //return DO;
+                        return DO;
                     }
 
 {BREAK}             {
                         tab = insert_banco(tab, yytext, "repetition_SILENCE", "\0", count);
-                        //return BREAK;
+                        return BREAK;
                     }                    
 
 {PRINTF}            {
                         tab = insert_banco(tab, yytext, "function_ItsShowTime", "\0", count);
-                        //return PRINTF;
+                        return PRINTF;
                     }
 {SCANF}             {
                         tab = insert_banco(tab, yytext, "function_WhatYouSay", "\0", count);
-                        //return SCANF;
+                        return SCANF;
                     }
 
 {FSCANF}            {
                         tab = insert_banco(tab, yytext, "function_fWhatYouSay", "\0", count);
-                        //return FSCANF;
+                        return FSCANF;
                     }
 
 {FPRINTF}           {
                         tab = insert_banco(tab, yytext, "function_fItsShowTime", "\0", count);
-                        //return FPRINTF;
+                        return FPRINTF;
                     }
 
 {SIZEOF}            {
                         tab = insert_banco(tab, yytext, "function_sizeof", "\0", count);
-                        //return SIZEOF;
+                        return SIZEOF;
                     }  
 
 {MALLOC}            {
                         tab = insert_banco(tab, yytext, "function_malloc", "\0", count);
-                        //return MALLOC;
+                        return MALLOC;
                     }
 
 {STRUCT}            {
                         tab = insert_banco(tab, yytext, "type_struct", "\0", count);
-                        //return STRUCT;
+                        return STRUCT;
                     }
 
 {VOID}              {
                         tab = insert_banco(tab, yytext, "type_void", "\0", count);
-                        //return VOID;
+                        return VOID;
                     }
 
 {INT}               {
                         tab = insert_banco(tab, yytext, "type_int", "\0", count);
-                        //return INT;
+                        return INT;
                     }
 
 {FLOAT}             {
                         tab = insert_banco(tab, yytext, "type_float", "\0", count);
-                        //return FLOAT;
+                        return FLOAT;
                     }
 
 {DOUBLE}            {
                         tab = insert_banco(tab, yytext, "type_double", "\0", count);
-                        //return DOUBLE;
+                        return DOUBLE;
                     }
 
 {CHAR}              {
                         tab = insert_banco(tab, yytext, "type_char", "\0", count);
-                        //return CHAR;
+                        return CHAR;
                     }
 
 {LONG}              {
                         tab = insert_banco(tab, yytext, "type_long", "\0", count);
-                        //return RETURN;
+                        return RETURN;
                     }
 
 {ADD}               {
                         tab = insert_banco(tab, yytext, "operator_add", "\0", count);
-                        //return ADD;
+                        return ADD;
                     }
 
 {SUB}               {
                         tab = insert_banco(tab, yytext, "operator_sub", "\0", count);
-                        //return SUB;
+                        return SUB;
                     }
 
 {ATRIB}             {
                         tab = insert_banco(tab, yytext, "atribuicao", "\0", count);
-                        //return ATRIB;
+                        return ATRIB;
                     }
 
 {DIV}               {
                         tab = insert_banco(tab, yytext, "operator_div", "\0", count);
-                        //return DIV;
+                        return DIV;
                     }
 
 {MULT}              {
                         tab = insert_banco(tab, yytext, "operator_mult", "\0", count);
-                        //return MULT;
+                        return MULT;
                     }
 
 {RESTO}             {
                         tab = insert_banco(tab, yytext, "operator_rest", "\0", count);
-                        //return RESTO;
+                        return RESTO;
                     }
 
 {AND}               {
                         tab = insert_banco(tab, yytext, "operator_and", "\0", count);
-                        //return AND;
+                        return AND;
                     }
 
 {OR}                {
                         tab = insert_banco(tab, yytext, "operator_or", "\0", count);
-                        //return OR;
+                        return OR;
                     }
 
 {NOT}               {
                         tab = insert_banco(tab, yytext, "operator_not", "\0", count);
-                        //return NOT;
+                        return NOT;
                     }
 
 {PARENTESES_esq}        {
                         tab = insert_banco(tab, yytext, "simb_parentheses_esq", "\0", count);
-                        //return PARENTESES_esq;
+                        return PARENTESES_esq;
                     }
 {PARENTESES_dir}        {
                         tab = insert_banco(tab, yytext, "simb_parentheses_dir", "\0", count);
-                        //return PARENTESES_dir;
+                        return PARENTESES_dir;
                     }
 
 {CHAVES_dir}            {
                         tab = insert_banco(tab, yytext, "simb_keys_dir", "\0", count);
-                        //return CHAVES_dir;
+                        return CHAVES_dir;
                     }
 {CHAVES_esq}            {
                         tab = insert_banco(tab, yytext, "simb_keys_esq", "\0", count);
-                        //return CHAVES_esq;
+                        return CHAVES_esq;
                     }
 
 {COLCHETES_esq}         {
                         tab = insert_banco(tab, yytext, "simb_brackets_esq", "\0", count);
-                        //return COLCHETES_esq;
+                        return COLCHETES_esq;
                     }
 {COLCHETES_dir}         {
                         tab = insert_banco(tab, yytext, "simb_brackets_dir", "\0", count);
-                        //return COLCHETES_dir;
+                        return COLCHETES_dir;
                     }
 
 {EQUAL}             {
                         tab = insert_banco(tab, yytext, "equal_comparator", "\0", count);
-                        //return EQUAL;
+                        return EQUAL;
                     }
 
 {MAIOR_EQUAL}       {
                         tab = insert_banco(tab, yytext, "greaterequal_comparator", "\0", count);
-                        //return MAIOR_EQUAL;
+                        return MAIOR_EQUAL;
                     }
 
 {MENOR_EQUAL}       {
                         tab = insert_banco(tab, yytext, "lessequal_comparator", "\0", count);
-                        //return MENOR_EQUAL;
+                        return MENOR_EQUAL;
                     }
 
 {DIFERENTE}         {
                         tab = insert_banco(tab, yytext, "notequal_comparator", "\0", count);
-                        //return DIFERENTE;
+                        return DIFERENTE;
                     }
 
 {MAIOR}             {
                         tab = insert_banco(tab, yytext, "greater_comparator", "\0", count);
-                        //return MAIOR;
+                        return MAIOR;
                     }
 
 {MENOR}             {
                         tab = insert_banco(tab, yytext, "less_comparator", "\0", count);
-                        //return MENOR;
+                        return MENOR;
                     }
 
 {ATRIB_ADD}         {
                         tab = insert_banco(tab, yytext, "accumulator_add", "\0", count);
-                        //return ATRIB_ADD;
+                        return ATRIB_ADD;
                     }
 
 {ATRIB_SUB}         {
                         tab = insert_banco(tab, yytext, "accumulator_sub", "\0", count);
-                        //return ATRIB_SUB;
+                        return ATRIB_SUB;
                     }
 
 {ATRIB_DIV}         {
                         tab = insert_banco(tab, yytext, "accumulator_div", "\0", count);
-                        //return ATRIB_DIV;
+                        return ATRIB_DIV;
                     }
 
 {ATRIB_MULT}        {
                         tab = insert_banco(tab, yytext, "accumulator_mult", "\0", count);
-                        //return ATRIB_MULT;
+                        return ATRIB_MULT;
                     }
 
 {ATRIB_REST}        {
                         tab = insert_banco(tab, yytext, "accumulator_rest", "\0", count);
-                        //return ATRIB_REST;
+                        return ATRIB_REST;
                     }
                     
 "TakeThis"          {
@@ -394,13 +397,14 @@ ERRONUM {DIGITO}+.
 
 {IDENTIFICADOR}     {
                         tabId = insert_banco(tabId, yytext, "id", "\0", count);
+                        return IDENTIFICADOR;
                     }
                 
 "\n"                {
                         count++;
                     }
 %%
-
+/*
 int main(){
     int op;
         opcoes();
@@ -421,3 +425,4 @@ int main(){
             }
 	return 0;
 }
+*/
