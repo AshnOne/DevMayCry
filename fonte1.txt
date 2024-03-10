@@ -1,1 +1,16 @@
-ShallWeDance(1+1)
+1#TakeThis Rebelion
+#GetSet RoyalGuard TRUE
+
+CatchThis struct {
+    char style
+} Dante
+
+
+int ThisPartysGettingCrazy(){
+    int a123 = 1.3
+    ComeOn( a123 == a123 ){
+        ItsShowTime()
+        whatIf( a123 ) SILENCE
+    }Fire
+    BEGONE
+}
