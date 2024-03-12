@@ -1,0 +1,16 @@
+TakeThis Rebelion
+GetSet RoyalGuard TRUE
+
+CatchThis struct {
+    char style
+} Dante
+
+
+int ThisPartysGettingCrazy(){
+    int 123a = .3
+    ComeOn( @123 == 1a23 ){
+        ItsShowTime()
+        whatIf( a123 ) SILENCE
+    }Fire
+    BEGONE
+}
